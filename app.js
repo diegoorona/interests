@@ -1,6 +1,7 @@
 var express = require('express');
 var path = require('path');
-var interest = require("./models/interest").Interest;
+var mongoose = require('mongoose');
+var multer = require('multer');
 //var favicon = require('serve-favicon');
 //var logger = require('morgan');
 //var cookieParser = require('cookie-parser');
@@ -21,7 +22,7 @@ app.set('view engine', 'jade');
 //app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(multer({dest: "./uploads"}));/
+app.use(multer({dest: "./uploads"}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', interests);
@@ -56,3 +57,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
+
+app.listen(8080);

@@ -1,15 +1,13 @@
-$(document).on('page:change',function(){
+$(document).ready(function(){
 	$(".noselect").unbind('mouseenter mouseleave');
 	var change = false;
 	$('.card').hover(function(){
 		$('h2', this).fadeOut(300);
 		$('h5', this).fadeTo('fast',1);
-		//$('h2', this).fadeIn(300).css({"text-align" : "center", "top" : "40%"});
 	},
 	function(){
 		$('h2', this).fadeIn(300);
 		$('h5', this).fadeTo('fast',0);
-		//$('h2', this).css({"text-align" : "right", "top" : "80%"});
 	});
 
 	$(document).scroll(function() { 

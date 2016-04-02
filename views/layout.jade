@@ -1,22 +1,25 @@
 doctype html
-html
+html(lang="en")
   head
     title MyBlog
+    meta(charset="utf-8")
     link(href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet")
     link(href='https://fonts.googleapis.com/css?family=Lato:400,300,100,700,900' rel='stylesheet' type='text/css')
     link(href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css')
+     link(href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet")
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
     div(class="header")
       div(class="container")
           div(class="nav")
             ul 
-              - if (#{url} !== '/')
-                <li class="pull-left">My Blog</li>
-              - else 
-                <li class="pull-left link">My Blog</li>
+              if '#{url}' != '/'
+                li(class="pull-left") My Blog
+              else
+                li(class="pull-left link") My Blog
 
+               
     block content
 
+    script(src="https://code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="   crossorigin="anonymous")
     script(rel='stylesheet', src='/javascripts/animate.js')
-    script(src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript")

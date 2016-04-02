@@ -1,14 +1,28 @@
 var express = require('express');
-var interests = express.Router();
-var Interest = require("./models/interest").Interest;
-var Component = require("./models/component").Component;
+var router = express.Router();
+var Interest = require("../public/models/interest").Interest;
+var Component = require("../public/models/component").Component;
 
 /* GET home page. */
-interests.get('/', function(req,res){
-  Interest.find(function(err,docum){
+router.get('/', function(req,res){
+  	Interest.find(function(err,documento){
 		if(err){console.log(err);}
-		respuesta.render("index",{ products: docum, url: req.url});
-	})
+		//console.log(documento);
+		console.log(req.url);
+		res.locals.url = req.url; 
+		res.render("index",{ interests: documento });
+	});
 });
 
-module.exports = interests;
+/*var data = {
+			title:"Places",
+			imageUrl:"http://p1.pichost.me/i/53/1770649.jpg",
+			reason: "That feeling of making you part of that place."
+		};
+  	var interest = Interest(data);
+  	interest.save(function(err){
+						console.log(interest);
+						//respuesta.render("/");
+					});*/
+
+module.exports = router;
