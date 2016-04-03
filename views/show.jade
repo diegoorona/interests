@@ -14,3 +14,25 @@ block content
             img(src="#{component.image}")
             h2(class="noselect")=component.name 
             h5(class="noselect")=component.description
+
+  button(type="button" class="btn-submit center-block" style="margin-top: 50px;" data-toggle="modal" data-target="#submitModal") Upload a new Component
+  div(class="modal fade" id="submitModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel")
+    div(class="modal-dialog" role="document")
+      div(class="modal-content")
+        div(class="modal-header")
+          button(type="button" class="close" data-dismiss="modal" aria-label="Close") #[span(aria-hidden="true")&times;]
+          h4(class="modal-title" id="exampleModalLabel") Upload a new component
+        div(class="modal-body")
+          form(role="form" method="post" action="/interests/#{interest.id}" enctype="multipart/form-data")
+            div(class="form-group")
+              label(for="recipient-name" class="control-label") Name of the component:
+              input(type="text" name="name" class="form-control" id="recipient-name")
+            div(class="form-group")
+              label(for="message-text" class="control-label") Description:
+              textarea(type="text" class="form-control" name="description" id="message-text")
+            div(class="form-group")
+              label(for="image" class="control-label") Image:
+              input(type="file" name="image_avatar")
+            div(class="modal-footer")
+              button(type="button" class="btn btn-default" data-dismiss="modal") Close
+              button(type="submit" class="btn-submit") Upload

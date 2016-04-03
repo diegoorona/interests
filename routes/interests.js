@@ -2,8 +2,14 @@ var express = require('express');
 var router = express.Router();
 var Interest = require("../public/models/interest").Interest;
 var Component = require("../public/models/component").Component;
+var cloudinary = require("cloudinary"); 
 
-/* GET home page. */
+cloudinary.config({ 
+  cloud_name: 'dwyk9xxmr', 
+  api_key: '742122983219814', 
+  api_secret: 'S-mX4bsD2H5JaS1Lp5ETIj-pYaQ'
+});
+
 router.get('/', function(req,res){
   	Interest.find(function(err,documento){
 		if(err){console.log(err);}
@@ -20,23 +26,37 @@ router.get('/interests/:id', function(req,res){
 		  	if(errorInt){console.log(err);}
 		  	Component.find({"interest_id" : req.params.id},function(err,documento){
 				if(err){console.log(err);}
-				console.log(documento);
-				console.log(documentInt);
 				res.render("show",{ components: documento, interest: documentInt});
 			});
 	  });
   	}
 });
+router.post('/interests/:id', function(req,res){
+	var data = {
+		name: req.body.name,
+		description: req.body.description,
+		interest_id: req.params.id
+	} 
+	console.log(data);
 
-/*var data = {
-			title:"Places",
-			imageUrl:"http://p1.pichost.me/i/53/1770649.jpg",
-			reason: "That feeling of making you part of that place."
-		};
-  	var interest = Interest(data);
-  	interest.save(function(err){
-						console.log(interest);
-						//respuesta.render("/");
-					});*/
+	var component = new Component(data);
+	if (req.params.id.match(/^[0-9a-fA-F]{24}$/)){
+		cloudinary.uploader.upload(req.files.image_avatar.path, 
+			function(result){
+				component.image = result.url;
+
+				component.save(function(err){
+					console.log(component);
+					Interest.findOne({"_id": req.params.id}, function(errorInt, documentInt){
+					  	if(errorInt){console.log(err);}
+					  		Component.find({"interest_id" : req.params.id},function(err,documento){
+					  			console.log(documento);
+								res.render("show",{ components: documento, interest: documentInt});
+						});
+				  });
+				});
+		});
+	}
+});
 
 module.exports = router;
