@@ -1,0 +1,16 @@
+extends ./layout
+block content
+  div(class="img-interests")
+    img(src="#{interest.imageUrl}")
+    h2(class="h2-interests")=interest.title
+
+  h2(class="h2") Reason
+  p(class="p")=interest.reason
+  div(class="interests")
+    div(class="container container-alt")
+      div(class="row")
+        each component in components
+          div(class="card col-sm-6")
+            img(src="#{component.image}")
+            h2(class="noselect")=component.name 
+            h5(class="noselect")=component.description

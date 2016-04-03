@@ -13,6 +13,20 @@ router.get('/', function(req,res){
 		res.render("index",{ interests: documento });
 	});
 });
+router.get('/interests/:id', function(req,res){
+	//Para asegurarnos que el req.params.id sea un ObjectId
+	if (req.params.id.match(/^[0-9a-fA-F]{24}$/)){
+		Interest.findOne({"_id": req.params.id}, function(errorInt, documentInt){
+		  	if(errorInt){console.log(err);}
+		  	Component.find({"interest_id" : req.params.id},function(err,documento){
+				if(err){console.log(err);}
+				console.log(documento);
+				console.log(documentInt);
+				res.render("show",{ components: documento, interest: documentInt});
+			});
+	  });
+  	}
+});
 
 /*var data = {
 			title:"Places",

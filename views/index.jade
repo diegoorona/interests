@@ -5,9 +5,9 @@ block content
   div(class="interests")
     div(class="container")
       div(class="row")
-      each interest in interests
-        div(class="card col-sm-6")  
-          a(href="/interests/#{interest.id}")
-            img(src="#{interest.imageUrl}") 
-            h2(class="noselect")=interest.title
-            h5(class="noselect")=interest.reason
+        each interest in interests
+          div(class="card col-sm-6")  
+            a(href="/interests/#{interest.id}")
+              img(src="#{interest.imageUrl}") 
+              h2(class="noselect")=interest.title
+              h5(class="noselect")=interest.reason

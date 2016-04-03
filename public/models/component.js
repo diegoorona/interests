@@ -4,9 +4,9 @@ var Schema = mongoose.Schema;
 
 var componentSchema = new Schema({
 	name:String,
-	imageUrl:String,
+	image:String,
 	description:String,
-	interest: { type: Schema.ObjectId, ref: "Interest" } 
+	interest_id:Schema.ObjectId
 });
 
 var Component = mongoose.model('Component', componentSchema);

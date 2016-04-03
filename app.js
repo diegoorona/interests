@@ -6,7 +6,8 @@ var multer = require('multer');
 //var logger = require('morgan');
 //var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-mongoose.connect("mongodb://localhost/blog");
+//mongoose.connect("mongodb://localhost/blog");
+mongoose.connect("mongodb://diegoorona:12130536@ds031893.mlab.com:31893/myblogdiego");
 
 var interests = require('./routes/interests');
 
