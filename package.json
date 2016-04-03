@@ -16,11 +16,14 @@
     "morgan": "~1.6.1",
     "multer": "^0.1.8",
     "path": "^0.12.7",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "^2.3.0"
   },
   "description": "Is a website with my interests",
   "main": "app.js",
   "devDependencies": {},
   "author": "Diego Orona",
-  "license": "ISC"
+  "license": "ISC",
+  "engines": {
+    "node": "4.4.1"
+  }
 }

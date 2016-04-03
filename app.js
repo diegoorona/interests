@@ -16,6 +16,7 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+//app.set('port', (process.env.PORT || 5000));
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -23,7 +24,9 @@ app.set('view engine', 'jade');
 //app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(multer({dest: "./uploads"}));
+//app.use(multer({dest: "./uploads"}));
+//var storage = multer.memoryStorage();
+app.use(multer());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', interests);
@@ -59,4 +62,7 @@ app.use(function(err, req, res, next) {
   });
 });
 
-app.listen(8080);
+app.listen((process.env.PORT || 5000), function(){
+  console.log('listening on *:5000');
+});
+//app.listen(8080);
